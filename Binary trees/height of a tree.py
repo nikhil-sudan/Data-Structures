@@ -40,4 +40,4 @@ tree.root.left.right=Node(5)                #   4   5 6   7
 tree.root.right.left=Node(6)                    
 tree.root.right.right=Node(7)
 
-print("height of the tree is: ",tree.height(tree.root))
+print("height of the tree is: ",tree.height(tree.root))     #prints- "height of the tree is:  2"
