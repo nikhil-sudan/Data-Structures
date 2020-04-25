@@ -6,15 +6,19 @@ Created on Sat Apr 25 16:54:51 2020
 """
 
 # IDEA:
-#     pass
+#     height of a tree is the max depth from the root
+
+    
 # INTRODUCTION:
-#     pass
+#     recursive method to find height
+#     we find height of left and right subtree of a node 
+#     and we return the max of the two values    
+
 class Node:
     def __init__(self, value):
         self.value=value
         self.left=None
         self.right=None
-        self.height=None
         
 class BinaryTree:
     def __init__(self, root):
@@ -24,7 +28,7 @@ class BinaryTree:
         if (start==None):
             return -1
         self.left_height=self.height(start.left)
-        self.right_height= self.height(start.right)
+        self.right_height=self.height(start.right)
         
         return (1+max(self.left_height, self.right_height))
 
