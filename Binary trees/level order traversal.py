@@ -11,71 +11,53 @@ Created on Fri Apr 24 00:46:40 2020
 # INTRODUCTION:
 #     in this algorithm,starting from root, add it to our queue
 #     for each first item in queue:
-#          add its right and left child into the queue(in that order)
-#          then, add that item onto the stack
+#          read the queue 1st element and dequeue that element
+#          add its left and right child into the queue(in that order)
 #     we repeat the steps unitl the queue is empty
+
 
 class Queue:
     def __init__(self):
         self.items=[]
-    def enqueue(self,value):
-        self.items.insert(0, value)
+    def enqueue(self,item):
+        self.items.insert(0, item)
     def dequeue(self):
-        return self.items.pop()
-    def is_Empty(self):
-        return len(self.items)==0
+        if not self.is_empty():
+            return self.items.pop()
+    def is_empty(self):
+        return(len(self.items))==0
     def peek(self):
         if not self.is_empty():
             return self.items[-1].value
-    #OVER RIDING THE len() method to work for Queue class object
+#DID  UNDERSTAND THIS: bcoz of line
     def __len__(self):
         return(self.size())
     def size(self):
-        return(len(self.items))
-    
-class Stack:
-    def __init__(self):
-        self.items2=[]
-    def push(self, value):
-        self.items2.append(value)
-    def pop(self):
-        return self.items2.pop()
-    def is_Empty(self):
-        return(len(self.items2)==0)
-    #OVER RIDING THE len() method to work for Stack class object
-    def __len__(self):
-        return(self.size())
-    def size(self):
-        return(len(self.items2))
-    
+        return (len(self.items))
+            
 class Node:
     def __init__(self,value):
-        self.value= value
+        self.value=value
         self.left=None
         self.right=None
-    
 class BinaryTree:
     def __init__(self, root):
         self.root=Node(root)
-        
-    def revLevelOrder(self, start):
-        traverse=""
+    def levelOrder(self,start):
+        traversal=""
         if(start):
             queue=Queue()
-            stack=Stack()
             queue.enqueue(start)
             while(len(queue)>0):
+                traversal+=str(queue.peek())+" "
                 node=queue.dequeue()
-                #print(node.value)k
-                if(node.right):
-                    queue.enqueue(node.right)
                 if(node.left):
                     queue.enqueue(node.left)
-                stack.push(node)
-        while(len(stack)>0):
-            traverse+=str(stack.pop().value)+" - "
-        return(traverse)
+                if(node.right):
+                    queue.enqueue(node.right)
+            return(traversal)
                 
+                       
             
             
 #creating a binary tree and adding nodes 
@@ -87,6 +69,6 @@ tree.root.left.right=Node(5)                #   4   5 6   7
 tree.root.right.left=Node(6)                    
 tree.root.right.right=Node(7)
 
-print(tree.revLevelOrder(tree.root))        # prints: 4 - 5 - 6 - 7 - 2 - 3 - 1 -
+print(tree.levelOrder(tree.root))        # prints: 4 - 5 - 6 - 7 - 2 - 3 - 1 -
 
     
