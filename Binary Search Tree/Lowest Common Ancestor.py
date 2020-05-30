@@ -10,7 +10,7 @@ IDEA:
     Lowest common ancestor of 2 nodes(say n1 and n2) in a BST is a node which has both n1 and n2 as descendants(where we allow a node to be a descendant of itself)
 
 INTRODUCTION:
-    in this algorithm(recursive solution), we simply check if the two values v1 and v2 are on opposite site of current root node,
+    in this algorithm(recursive solution), we simply check if the two values n1 and n2 are on opposite site of current root node,
     if yes, we print the root node bcoz that will be the Lowest Common Ancestor.
     if not, that means they are on same side and there is some other common ancestor. So, we move to the next sub tree(and update the root) if both are on left side of current root node
     or we move to the next sub tree(and update the root) 
@@ -31,15 +31,15 @@ class Node:
 #return the pointer to the lowest common ancestor node of the two nodes.
 def lowestCommonAncestor(root, n1, n2):
     
-    #if v1 and v2 are on opposite side of the current root, then return the root
+    #if n1 and n2 are on opposite side of the current root, then return the root
     if(n1<=root.info and n2>=root.info or n1>=root.info and n2<=root.info):
         return(root)
         
-    #if v1 and v2 both lie on the left side of current root node, then recursively calling function again in left sub tree to find lowest common ancestor
+    #if n1 and n2 both lie on the left side of current root node, then recursively calling function again in left sub tree to find lowest common ancestor
     elif(n1<root.info and n2<root.info):
         return(lowestCommonAncestor(root.left, n1, n2))
     
-        #if v1 and v2 both lie on the right side of current root node, then recursively calling function again in right sub tree to find lowest common ancestor
+        #if n1 and n2 both lie on the right side of current root node, then recursively calling function again in right sub tree to find lowest common ancestor
     elif(n1>root.info and n2>root.info):
         return(lowestCommonAncestor(root.right, n1, n2))
     
@@ -77,8 +77,10 @@ class BinarySearchTree:
 #creating an object of class-BinarySearchTree
 tree = BinarySearchTree()
 
+print("Enter number of nodes to be inserted in the BST:", end="")
 t = int(input())    #"t" denotes number of values to be inserted into the BST.
 
+print("Enter Values (in a single line)")
 arr = list(map(int, input().split()))   # takes t inputs in one line and puts them in a array
 
 #inserting each value one by one into the BST
@@ -89,5 +91,8 @@ for i in range(t):
 print("Choose any 2 values from: ", arr)
 value1,value2= map(int, input().split())    #enter 2 values to find the loweset common ancestor
 
-#print the value of Lowest common ancestor 
-print("Lowest Common Ancestor of this BST is: ", lowestCommonAncestor(tree.root, value1, value2).info)
+if(value1 in arr and value2 in arr):
+    #print the value of Lowest common ancestor 
+    print("Lowest Common Ancestor of this BST is: ", lowestCommonAncestor(tree.root, value1, value2).info)
+else:
+    print(" the value do not exist in the tree. ")
