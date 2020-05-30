@@ -91,5 +91,3 @@ value1,value2= map(int, input().split())    #enter 2 values to find the loweset 
 
 #print the value of Lowest common ancestor 
 print("Lowest Common Ancestor of this BST is: ", lowestCommonAncestor(tree.root, value1, value2).info)
-#inOrder(tree.root)
-
